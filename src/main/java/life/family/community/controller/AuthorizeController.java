@@ -58,6 +58,7 @@ public class AuthorizeController {
             response.addCookie(new Cookie("token", token));
             return "redirect:/";
         }else{
+            System.out.println("登陆失败");
             //登录失败，重新登录
             return "redirect:/";
         }

@@ -1,10 +1,7 @@
 package life.family.community.mapper;
 
 import life.family.community.model.Question;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,11 +17,20 @@ public interface QuestionMapper {
     Integer count();
 
     @Select("select * from question where creator = #{userId} limit #{offset}, #{size}")
-    List<Question> listByUserId(@Param(value = "userId")Integer userId, @Param(value = "offset") Integer offset,@Param(value = "size")Integer size);
+    List<Question> listByUserId(@Param(value = "userId")Long userId, @Param(value = "offset") Integer offset,@Param(value = "size")Integer size);
 
     @Select("select count(1) from question where creator = #{userId}")
-    Integer countByUserId(@Param(value = "userId") Integer userId);
+    Integer countByUserId(@Param(value = "userId") Long userId);
 
     @Select("select * from question where id = #{id}")
-    Question getById(@Param(value = "id")Integer id);
+    Question getById(@Param(value = "id")Long id);
+
+    @Update("update question set title = #{title}, description = #{description}, gmt_modified = #{gmtModified}, tag = #{tag} where id = #{id}")
+    void update(Question question);
+
+    @Update("update question set view_count = #{viewCount} where id = #{id}")
+    void updateView(@Param(value = "viewCount")Integer viewCount, @Param(value = "id")Long id);
+
+    @Update("update question set comment_count = #{commentCount} where id = #{id}")
+    void updateCommentCount(@Param(value = "commentCount")Integer commentCount, @Param(value = "id")Long id);
 }
