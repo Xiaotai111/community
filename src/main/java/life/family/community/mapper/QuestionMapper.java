@@ -1,5 +1,6 @@
 package life.family.community.mapper;
 
+import life.family.community.dto.QuestionDTO;
 import life.family.community.model.Question;
 import org.apache.ibatis.annotations.*;
 
@@ -10,7 +11,7 @@ public interface QuestionMapper {
     @Insert("insert into question (title, description, gmt_create,gmt_modified,creator,tag) values (#{title},#{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{tag})")
     void create(Question question);
 
-    @Select("select * from question limit #{offset}, #{size}")
+    @Select("select * from question order by gmt_create DESC limit #{offset}, #{size}")
     List<Question> list(@Param(value = "offset") Integer offset,@Param(value = "size") Integer size);
 
     @Select("select count(1) from question")
@@ -33,4 +34,7 @@ public interface QuestionMapper {
 
     @Update("update question set comment_count = #{commentCount} where id = #{id}")
     void updateCommentCount(@Param(value = "commentCount")Integer commentCount, @Param(value = "id")Long id);
+
+    @Select("select * from question where id != #{id} and tag regexp #{tag}")
+    List<Question> selectByTag(Question question);
 }

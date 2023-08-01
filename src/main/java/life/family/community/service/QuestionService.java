@@ -8,12 +8,15 @@ import life.family.community.mapper.QuestionMapper;
 import life.family.community.mapper.UserMapper;
 import life.family.community.model.Question;
 import life.family.community.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -122,5 +125,23 @@ public class QuestionService {
     public void incCommentCount(Long id){
         Question question = questionMapper.getById(id);
         questionMapper.updateCommentCount(question.getCommentCount()+1,id);
+    }
+
+    public List<QuestionDTO> selectByTag(QuestionDTO questionDTO){
+        if(StringUtils.isBlank(questionDTO.getTag())){
+            return new ArrayList<>();
+        }
+        String[] tags = StringUtils.split(questionDTO.getTag(), ",");
+        String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Question question = new Question();
+        question.setId(questionDTO.getId());
+        question.setTag(regexpTag);
+        List<Question> questions = questionMapper.selectByTag(question);
+        List<QuestionDTO> questionDTOS = questions.stream().map(q -> {
+            QuestionDTO questionDTO1 = new QuestionDTO();
+            BeanUtils.copyProperties(q, questionDTO1);
+            return questionDTO1;
+        }).collect(Collectors.toList());
+        return questionDTOS;
     }
 }
