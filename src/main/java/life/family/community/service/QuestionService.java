@@ -53,7 +53,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOList);
+        paginationDTO.setData(questionDTOList);
 
         return paginationDTO;
     }
@@ -71,7 +71,7 @@ public class QuestionService {
         if (page < 1) {
             page = 1;
         }
-        if (page > totalPage) {
+        if (page > totalPage&&totalPage!=0) {
             page = totalPage;
         }
         paginationDTO.setPagination(totalPage, page);
@@ -86,7 +86,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOList);
+        paginationDTO.setData(questionDTOList);
 
         return paginationDTO;
     }
