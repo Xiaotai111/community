@@ -2,6 +2,7 @@ package life.family.community.service;
 
 import life.family.community.dto.PaginationDTO;
 import life.family.community.dto.QuestionDTO;
+import life.family.community.dto.QuestionQueryDTO;
 import life.family.community.exception.CustomizeErrorCode;
 import life.family.community.exception.CustomizeException;
 import life.family.community.mapper.QuestionMapper;
@@ -26,10 +27,23 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search, Integer page, Integer size) {
+        if(StringUtils.isNotBlank(search)){
+            String[] tags = StringUtils.split(search, " ");
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
         PaginationDTO paginationDTO = new PaginationDTO();
+
         Integer totalPage;
-        Integer totalCount = questionMapper.count();
+
+        Integer totalCount;
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        if(StringUtils.isBlank(search)){
+            totalCount = questionMapper.countAll();
+        }else {
+            totalCount = questionMapper.countBySearch(questionQueryDTO);
+        }
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
@@ -43,7 +57,16 @@ public class QuestionService {
         }
         paginationDTO.setPagination(totalPage, page);
         Integer offset = size * (page - 1);
-        List<Question> questions = questionMapper.list(offset, size);
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setOffset(offset);
+
+        List<Question> questions;
+
+        if(StringUtils.isBlank(search)){
+            questions = questionMapper.list(questionQueryDTO);
+        }else{
+            questions = questionMapper.selectBySearch(questionQueryDTO);
+        }
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {

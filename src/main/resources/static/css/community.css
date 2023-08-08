@@ -89,3 +89,8 @@ body{
     margin: 5px 5px;
     display: inline-block;
 }
+
+.footer{
+    padding: 10px 30%;
+    color: #666;
+}

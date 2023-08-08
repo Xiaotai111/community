@@ -1,6 +1,7 @@
 package life.family.community.mapper;
 
 import life.family.community.dto.QuestionDTO;
+import life.family.community.dto.QuestionQueryDTO;
 import life.family.community.model.Question;
 import org.apache.ibatis.annotations.*;
 
@@ -12,10 +13,10 @@ public interface QuestionMapper {
     void create(Question question);
 
     @Select("select * from question order by gmt_create DESC limit #{offset}, #{size}")
-    List<Question> list(@Param(value = "offset") Integer offset,@Param(value = "size") Integer size);
+    List<Question> list(QuestionQueryDTO questionQueryDTO);
 
     @Select("select count(1) from question")
-    Integer count();
+    Integer countAll();
 
     @Select("select * from question where creator = #{userId} limit #{offset}, #{size}")
     List<Question> listByUserId(@Param(value = "userId")Long userId, @Param(value = "offset") Integer offset,@Param(value = "size")Integer size);
@@ -37,4 +38,13 @@ public interface QuestionMapper {
 
     @Select("select * from question where id != #{id} and tag regexp #{tag}")
     List<Question> selectByTag(Question question);
+
+    @Select("select count(*) from question where title regexp #{search}")
+    Integer countBySearch(QuestionQueryDTO questionQueryDTO);
+
+    @Select("select * from question where title regexp #{search} order by gmt_create DESC limit #{offset}, #{size}")
+    List<Question> selectBySearch(QuestionQueryDTO questionQueryDTO);
+
+    @Delete("delete from question where id = #{id}")
+    void deleteById(@Param(value = "id") Long id);
 }
