@@ -57,7 +57,6 @@ public class CommentService {
             if(dbComment == null){
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
-
             Question question = questionMapper.getById(dbComment.getParentId());
             if(question == null){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -81,7 +80,6 @@ public class CommentService {
         if(receiver == comment.getCommentator()){
             return;
         }
-
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(type);

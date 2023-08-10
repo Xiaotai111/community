@@ -46,6 +46,7 @@ public class CommentController {
         return ResultDTO.okOf();
     }
 
+    //获得所有同一个回复下方的二级回复列表
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDTO<List> comments(@PathVariable(name = "id")Long id){

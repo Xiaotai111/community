@@ -68,9 +68,9 @@ function collapseComments(e){
             e.setAttribute("data-collapse", "in");
             e.classList.add("active");
         }else{
+            //获得同一回复下的所有二级回复
             $.getJSON("/comment/"+id, function (data){
                 $.each(data.data.reverse(), function (index,comment){
-
                     var mediaLeftElement = $("<div/>",{
                         "class":"media-left"
                     }).append( $("<img/>",{

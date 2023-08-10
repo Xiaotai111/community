@@ -30,6 +30,7 @@ public class SessionInterceptor implements HandlerInterceptor {
                     if (token != null && !token.isEmpty()) { // 再次进行空值检查
                         List<User> users = userMapper.findByToken(token);
                         if (users.size() != 0) {
+                            //将用户信息存储到session中
                             request.getSession().setAttribute("user", users.get(0));
                             Integer unreadCount = notificationService.unreadCount(users.get(0).getId());
                             request.getSession().setAttribute("unreadCount", unreadCount);
