@@ -44,7 +44,7 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:if="${paginationDTO.showFirstPage}">
-                        <a href="@{/(page=1,search=${search})}" aria-label="Previous">
+                        <a th:href="@{/(page=1,search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
