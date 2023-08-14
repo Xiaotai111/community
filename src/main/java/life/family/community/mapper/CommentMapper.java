@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @Author:QiTao
+ */
 @Mapper
 public interface CommentMapper {
     @Insert("insert into comment (parent_id, type, commentator, gmt_create, gmt_modified, like_count, content, comment_count) values (#{parentId}, #{type}, #{commentator}, #{gmtCreate}, #{gmtModified}, #{likeCount}, #{content}, #{commentCount})")

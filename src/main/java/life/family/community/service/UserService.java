@@ -4,7 +4,9 @@ import life.family.community.mapper.UserMapper;
 import life.family.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+/**
+ * @Author:QiTao
+ */
 @Service
 public class UserService {
     @Autowired

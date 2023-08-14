@@ -1,6 +1,5 @@
 package life.family.community.controller;
 
-import life.family.community.dto.CommentCreateDTO;
 import life.family.community.dto.CommentDTO;
 import life.family.community.dto.QuestionDTO;
 import life.family.community.enums.CommentTypeEnum;
@@ -14,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
+/**
+ * @Author:QiTao
+ */
 @Controller
 public class QuestionController {
 

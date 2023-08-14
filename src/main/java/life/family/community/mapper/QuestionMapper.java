@@ -1,12 +1,14 @@
 package life.family.community.mapper;
 
-import life.family.community.dto.QuestionDTO;
 import life.family.community.dto.QuestionQueryDTO;
 import life.family.community.model.Question;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @Author:QiTao
+ */
 @Mapper
 public interface QuestionMapper {
     @Insert("insert into question (title, description, gmt_create,gmt_modified,creator,tag) values (#{title},#{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{tag})")

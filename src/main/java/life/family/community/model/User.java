@@ -1,8 +1,10 @@
 package life.family.community.model;
 
-import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import lombok.Data;
 
+/**
+ * @Author:QiTao
+ */
 @Data
 public class User {
     private Long id;

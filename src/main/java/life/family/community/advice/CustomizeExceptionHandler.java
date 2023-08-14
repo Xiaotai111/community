@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import life.family.community.dto.ResultDTO;
 import life.family.community.exception.CustomizeErrorCode;
 import life.family.community.exception.CustomizeException;
-import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,13 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * @Author:QiTao
+ */
 @ControllerAdvice
 public class CustomizeExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     ModelAndView handle(HttpServletRequest request, Throwable e, Model model, HttpServletResponse response){
         String contentType = request.getContentType();
-        if("application/json".equals(contentType)){
+        String s = "application/json";
+        if(s.equals(contentType)){
             ResultDTO resultDTO;
             if(e instanceof CustomizeException){
                 resultDTO = ResultDTO.errorOf((CustomizeException) e);

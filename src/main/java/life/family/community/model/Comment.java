@@ -2,6 +2,9 @@ package life.family.community.model;
 
 import lombok.Data;
 
+/**
+ * @Author:QiTao
+ */
 @Data
 public class Comment {
     private Long id;

@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @Author:QiTao
+ */
 @Data
 public class ResultDTO<T> {
     private Integer code;

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * @Author:QiTao
+ */
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
     @Autowired

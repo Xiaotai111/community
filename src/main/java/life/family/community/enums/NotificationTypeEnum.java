@@ -1,5 +1,8 @@
 package life.family.community.enums;
 
+/**
+ * @Author:QiTao
+ */
 public enum NotificationTypeEnum {
     REPLY_QUESTION(1,"回复了问题"),
     REPLY_COMMIT(2,"回复了评论")

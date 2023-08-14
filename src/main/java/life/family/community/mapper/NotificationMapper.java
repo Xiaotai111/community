@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @Author:QiTao
+ */
 @Mapper
 public interface NotificationMapper {
 

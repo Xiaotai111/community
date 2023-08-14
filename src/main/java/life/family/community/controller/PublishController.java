@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @Author:QiTao
+ */
 @Controller
 public class PublishController {
     @Autowired

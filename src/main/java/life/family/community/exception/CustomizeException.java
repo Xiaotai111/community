@@ -1,5 +1,8 @@
 package life.family.community.exception;
 
+/**
+ * @Author:QiTao
+ */
 public class CustomizeException extends RuntimeException{
     private String message;
     private Integer code;

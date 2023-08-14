@@ -3,6 +3,9 @@ package life.family.community.dto;
 import life.family.community.model.User;
 import lombok.Data;
 
+/**
+ * @Author:QiTao
+ */
 @Data
 public class CommentDTO {
     private Long id;

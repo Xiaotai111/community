@@ -1,12 +1,15 @@
 package life.family.community.enums;
 
+/**
+ * @Author:QiTao
+ */
 public enum CommentTypeEnum {
     QUESTION(1), COMMENT(2);
     private Integer type;
 
     public static boolean isExist(Integer type) {
         for (CommentTypeEnum commentTypeEnum : CommentTypeEnum.values()) {
-            if(commentTypeEnum.getType() == type){
+            if(commentTypeEnum.getType().equals(type)){
                 return true;
             }
         }

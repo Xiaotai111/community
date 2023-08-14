@@ -1,9 +1,10 @@
 package life.family.community.dto;
 
-import life.family.community.mapper.UserMapper;
-import life.family.community.model.User;
 import lombok.Data;
 
+/**
+ * @Author:QiTao
+ */
 @Data
 public class NotificationDTO {
     private Long id;

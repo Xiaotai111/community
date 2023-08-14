@@ -1,5 +1,8 @@
 package life.family.community.enums;
 
+/**
+ * @Author:QiTao
+ */
 public enum NotificationStatusEnum {
     UNREAD(0),READ(1)
     ;

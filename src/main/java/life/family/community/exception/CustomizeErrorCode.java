@@ -1,5 +1,8 @@
 package life.family.community.exception;
 
+/**
+ * @Author:QiTao
+ */
 public enum CustomizeErrorCode implements ICustomizeErrorCode {
     QUESTION_NOT_FOUND(2001,"你找的问题不在了，要不换个试试？"),
     TARGET_PARAM_NOT_FOUND(2002,"未选中任何问题或评论进行回复。"),
